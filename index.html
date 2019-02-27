@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dojo Arena</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    
+        $(document).ready(function(){
+
+            $("button").on({mouseenter: function() {
+                var background = $(this).attr("background-source");
+                $(".container").css("background-image","url('"+background+"')");
+            },
+            mouseleave: function() {
+                $(".container").css("background-image", "");
+            }
+            });
+            
+            $(document).on("click", "button", function(){
+                var output = "";
+                output += `
+                    <h1>Select Players</h1>
+                    <select class='p1' name='select-ninja1'>
+                        <option value="">Select Ninja</option>
+                        <option value='raphael'>Raphael</option>
+                        <option value='leo'>Leonardo</option>
+                        <option value='donny'>Donatello</option>
+                        <option value='mikey'>Michaelangelo</option>
+                    </select>
+
+                    <select class='p2' name='select-ninja2'>
+                        <option value="">Select Ninja</option>
+                        <option value='raphael'>Raphael</option>
+                        <option value='leo'>Leonardo</option>
+                        <option value='donny'>Donatello</option>
+                        <option value='mikey'>Michaelangelo</option>
+                    </select>`
+                $("button").unbind('mouseenter mouseleave');
+                $(".menu").html(output);
+            });
+
+            $(document).on("change", ".p1", function(){
+                if ($(this).val() != "") {
+                    var my_char = $(this).val();
+                    $(".player-1-staging").html("<img class='char-start' src='"+my_char+".png'>")
+                }
+            })
+            $(document).on("change", ".p2", function(){
+                if ($(this).val() != "") {
+                    var my_char = $(this).val();
+                    $(".player-2-staging").html("<img class='char-start' src='"+my_char+".png'>")
+                }
+            })
+        })
+    
+    
+    
+    </script>
+</head>
+<body>
+    <div class="container">
+
+        <div class="menu">
+            <h1>Select Arena</h1>
+            <button background-source="beach.jpg">beach</button>
+            <button background-source="dojo.jpg">dojo</button>
+            <button background-source="forest.jpg">forest</button>
+            <button background-source="matrix.jpg">matrix</button>
+            <button background-source="snow.jpg">snow</button>
+            <button background-source="earth.jpg">planet</button>
+        </div>
+
+        <div class="player-1-staging">
+            
+        </div>
+        <div class="player-2-staging">
+
+        </div>
+
+    </div>
+</body>
+</html>
